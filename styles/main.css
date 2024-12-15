@@ -638,3 +638,5 @@ footer {
 .sidebar-drawer {
   visibility: hidden;
 }
+
+hr { border: none; }
