@@ -1,0 +1,640 @@
+/* GNOME CSS theme for Release Notes */
+
+/* FONTS */
+@font-face {
+  font-family: "Cantarell";
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  src: local("Cantarell Variable"), local("Cantarell"),
+    url(https://static.gnome.org/fonts/Cantarell-VF.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Inter var";
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  font-named-instance: "Regular";
+  src: local("Inter Var"), local("Inter Variable"), local("InterVariable"),
+    url(https://static.gnome.org/fonts/Inter.var.woff2) format("woff2");
+}
+
+:root {
+  --rounded-corner: 12px;
+  --gnomeblue: #1c71d8;
+  --blue1: rgb(153, 193, 241);
+  --blue2: rgb(98, 160, 234);
+  --blue3: rgb(53, 132, 228);
+  --blue4: rgb(28, 113, 216);
+  --blue5: rgb(26, 95, 180);
+  --green1: rgb(143, 240, 164);
+  --green2: rgb(87, 227, 137);
+  --green3: rgb(51, 209, 122);
+  --green4: rgb(46, 194, 126);
+  --green5: rgb(38, 162, 105);
+  --yellow1: rgb(249, 240, 107);
+  --yellow2: rgb(248, 228, 92);
+  --yellow3: rgb(246, 211, 45);
+  --yellow4: rgb(245, 194, 17);
+  --yellow5: rgb(229, 165, 10);
+  --orange1: rgb(255, 190, 111);
+  --orange2: rgb(255, 163, 72);
+  --orange3: rgb(255, 120, 0);
+  --orange4: rgb(230, 97, 0);
+  --orange5: rgb(198, 70, 0);
+  --red1: rgb(246, 97, 81);
+  --red2: rgb(237, 51, 59);
+  --red3: rgb(224, 27, 36);
+  --red4: rgb(192, 28, 40);
+  --red5: rgb(165, 29, 45);
+  --purple1: rgb(220, 138, 221);
+  --purple2: rgb(192, 97, 203);
+  --purple3: rgb(145, 65, 172);
+  --purple4: rgb(129, 61, 156);
+  --purple5: rgb(97, 53, 131);
+  --brown1: rgb(205, 171, 143);
+  --brown2: rgb(181, 131, 90);
+  --brown3: rgb(152, 106, 68);
+  --brown4: rgb(134, 94, 60);
+  --brown5: rgb(99, 69, 44);
+  --light1: rgb(255, 255, 255);
+  --light2: rgb(246, 245, 244);
+  --light3: rgb(222, 221, 218);
+  --light4: rgb(192, 191, 188);
+  --light5: rgb(154, 153, 150);
+  --dark1: rgb(119, 118, 123);
+  --dark2: rgb(94, 92, 100);
+  --dark3: rgb(61, 56, 70);
+  --dark4: rgb(36, 31, 49);
+  --dark5: rgb(0, 0, 0);
+  --text: #f6f5f4;
+  --tocbg: var(--light2);
+  --tocfg: var(--dark3);
+  --borders: var(--light3);
+  --fgcolor: var(--dark5);
+  --bgcolor: var(--light1);
+  --osdfgcolor: var(--dark5);
+  --osdbgcolor: rgba(0, 0, 0, 0.1);
+  --link: var(--blue2);
+  --link-deco: rgb(188, 250, 255);
+  --cantarell: Cantarell, -apple-system, BlinkMacSystemFont, "Helvetica",
+    sans-serif;
+  --inter: "Inter var", sans-serif;
+}
+
+::selection {
+  background-color: rgba(153, 193, 241, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tocbg: rgba(0, 0, 0, 0.3);
+    --tocfg: var(--light5);
+    --borders: var(--dark3);
+    --fgcolor: var(--light1);
+    --bgcolor: var(--dark4);
+    --link: var(--blue3);
+    --link-deco: rgb(13, 32, 128);
+    --osdfgcolor: var(--light1);
+    --osdbgcolor: rgba(0, 0, 0, 0.3);
+  }
+  ::selection {
+    background-color: rgba(26, 95, 180, 0.4);
+  }
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+} /* smooth scroll anchor links */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--inter);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--fgcolor);
+  background-color: var(--bgcolor);
+  overflow-x: hidden; /* screenshots when zoomed in */
+  margin-bottom: 3rem;
+}
+@media (min-width: 700px) {
+  html,
+  body {
+    font-size: 18px;
+  }
+}
+
+main,
+footer {
+  max-width: 50rem;
+  margin: auto;
+  padding: 0;
+}
+
+/* grid layout to allow for images being edge to edge */
+main {
+  max-width: inherit;
+  padding: 0;
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(2rem, 1fr)
+    [main-start] minmax(0, 50rem) [main-end]
+    minmax(2rem, 1fr) [full-end];
+}
+
+main > * {
+  grid-column: main;
+}
+
+main p.full {
+  display: block;
+  grid-column: full;
+  margin: 0;
+}
+
+main p.full img {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+pre {
+  grid-column: main / full;
+  background-color: var(--dark4);
+  color: var(--light1);
+  padding: 2rem;
+  overflow: scroll;
+}
+
+p strong {
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+h1 {
+  font-family: var(--cantarell);
+  font-weight: 300;
+  font-size: 24pt;
+}
+h2 {
+  font-family: var(--cantarell);
+  font-weight: 800;
+  font-size: 17pt;
+}
+h3 {
+  font-family: var(--cantarell);
+  font-weight: 800;
+  font-size: 15pt;
+}
+h4 {
+  font-family: var(--cantarell);
+  font-weight: 700;
+  font-size: 14pt;
+}
+h5 {
+  font-family: var(--cantarell);
+  font-weight: 700;
+  font-size: 12pt;
+}
+h2,
+h3,
+h4,
+h5 {
+  opacity: 0.7;
+}
+
+h1:first-of-type {
+  margin-top: 5rem;
+}
+
+a {
+  color: var(--link);
+  text-decoration-color: var(--link-deco);
+  transition: all 300ms ease-in-out;
+}
+a:hover {
+  color: var(--blue3);
+  text-decoration: underline;
+}
+
+ul.simple {
+  margin: 1rem 1rem 3rem;
+}
+ul.simple li {
+  list-style-image: url(bullet.svg);
+  margin-inline-end: 1ch;
+  margin-bottom: 1rem;
+}
+
+kbd {
+  font-family: monospace;
+  font-size: 70%;
+  padding: 0.2rem 0.4rem;
+  background-color: var(--osdbgcolor);
+  color: var(--osdfgcolor);
+  border-radius: var(--rounded-corner);
+}
+.icon-dropshadow {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+}
+
+.related-pages {
+  font-size: 10pt;
+  font-weight: 800;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.related-pages a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 12px;
+}
+.related-pages a .title {
+  color: var(--dark1);
+}
+.related-pages a svg {
+  width: 32px;
+  height: 32px;
+}
+
+.prev-page {
+  border-radius: 8px;
+  padding: 8px 24px 8px 8px;
+}
+.prev-page svg {
+  transform: rotate(180deg);
+}
+.next-page {
+  border-radius: 8px;
+  padding: 8px 8px 8px 24px;
+}
+.related-pages a.prev-page,
+.related-pages a.next-page {
+  float: none;
+  max-width: inherit;
+}
+
+.related-pages a.prev-page:hover,
+.related-pages a.next-page:hover {
+  background-color: var(--tocbg);
+}
+@media (min-width: 700px) {
+  .related-pages {
+    font-size: 14pt;
+  }
+  .prev-page {
+    padding: 16px 48px 16px 16px;
+    border-radius: 24px;
+  }
+  .next-page {
+    padding: 16px 16px 16px 48px;
+    border-radius: 24px;
+  }
+}
+
+.related-pages a {
+  color: var(--blue3);
+}
+.related-pages a.prev-page:only-child,
+.related-pages a.next-page:only-child,
+.page-info {
+  /* align-self: flex-end; i wish */
+  width: 100%; /* big buttons instead */
+}
+
+.toctree-wrapper ul {
+  margin: 0;
+  padding: 0;
+}
+
+.toctree-wrapper li {
+  list-style: none;
+  margin: 0 0 1rem 0;
+}
+.toctree-wrapper li.toctree-l1 {
+  font-size: 14pt;
+  font-weight: 600;
+}
+.toctree-wrapper li.toctree-l1 > a {
+  color: var(--tocfg);
+}
+
+.toctree-wrapper li.toctree-l2 {
+  list-style-image: url(toc_bullet.svg);
+  margin: 0;
+  font-size: 12pt;
+  font-weight: 400;
+  padding: 0.2rem;
+}
+.toctree-wrapper > ul ul {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: 0.2rem;
+}
+.toctree-wrapper > ul ul a {
+  background-color: transparent;
+}
+/* tiled TOC with images */
+
+ul.tiled-toc {
+  display: grid;
+  gap: 1rem;
+  grid-auto-flow: row;
+  margin: 1rem 0;
+  padding: 0;
+  text-align: center;
+  margin-top: 2rem;
+}
+ul.tiled-toc li {
+  display: block;
+  list-style: none;
+}
+ul.tiled-toc li img {
+  display: block;
+  width: 100%;
+}
+ul.tiled-toc li img::after {
+  content: "Foo";
+}
+
+ul.tiled-toc a {
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+@media (min-width: 700px) {
+  ul.tiled-toc {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  ul.tiled-toc a {
+    color: white;
+  }
+}
+
+table.docutils {
+  font-size: 90%;
+  box-shadow: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 0;
+  text-align: left;
+  border-width: 0;
+  box-sizing: border-box;
+}
+/* reset crazy */
+table.docutils th,
+table.docutils tr,
+table.docutils td {
+  background-color: transparent;
+}
+
+table.docutils td,
+table.docutils th {
+  border-width: 0;
+  padding: 0.25rem;
+}
+table.docutils tr {
+  border-width: 0;
+  border-bottom: 1px solid var(--borders);
+}
+
+table.docutils thead tr {
+  font-weight: 800;
+  border-width: 0;
+  box-sizing: inherit;
+  border-bottom: 2px solid var(--borders);
+}
+
+video {
+  width: 100%;
+  height: auto;
+}
+
+img {
+  max-width: 100%;
+}
+
+img[src$="-bigimage.svg"] {
+  margin: 0 -1rem 0 -1rem;
+}
+
+img[src$="-screenshot.png"],
+img[src$="-screenshot.jpg"] {
+  width: 100%;
+  height: auto;
+  transition: all 300ms ease-out;
+}
+
+img[src$="-screenshot.png"]:hover,
+img[src$="-screenshot.jpg"]:hover {
+  transform: scale(1.06);
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='96' viewport='0 0 100 100' style='fill:black;font-size:48px;'><text y='50%'>🔎</text></svg>")
+      16 0,
+    auto;
+}
+
+img[src$="-screenshot.png"]:active,
+img[src$="-screenshot.jpg"]:active {
+  transform: scale(1.5);
+}
+
+.app-gallery {
+  background-color: transparent;
+  aspect-ratio: 1 / 1; /* prevent following content from jumping */
+}
+.app-gallery a {
+  text-decoration: none;
+  transition: all 300ms ease-out;
+}
+.app-gallery a:hover {
+  font-weight: bold;
+}
+
+.app-gallery h2 {
+  font-size: 32pt;
+  font-weight: 300;
+  text-align: center;
+}
+
+/* app icons tabs */
+#apps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  /* justify-content: space-between;
+  align-content: space-between; */
+  justify-content: space-between;
+  justify-items: stretch;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 0 5rem;
+  padding: 0;
+  gap: 1rem;
+  text-align: center;
+}
+#apps input {
+  display: none;
+}
+#apps input + label {
+  display: block;
+  text-align: center;
+  padding: 3%;
+}
+
+#apps input + label img {
+  transition: transform 300ms ease-in-out;
+  max-width: 128px;
+  width: calc(100% - 12px); /* scale down for small size */
+  height: auto;
+}
+#apps input + label img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#apps .app {
+  display: none; /* hide everything initially*/
+  grid-column: span 4;
+  transition: all 300ms ease-in-out;
+}
+#app1:checked ~ .app.content1,
+#app2:checked ~ .app.content2,
+#app3:checked ~ .app.content3,
+#app4:checked ~ .app.content4 {
+  display: block;
+  justify-self: stretch;
+} /* show content for selected app */
+
+#apps .window-caption {
+  max-width: 23em;
+  margin: 1rem auto;
+}
+
+#apps input + label {
+  position: relative;
+  top: 1px;
+  border-radius: var(--rounded-corner);
+}
+
+#apps input:checked + label {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+#apps input + label:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+@media (prefers-color-scheme: dark) {
+  #apps input:checked + label {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  #apps input + label:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+input ~ .app {
+  overflow: hidden;
+  padding: 0;
+}
+
+@media (min-width: 900px) {
+  input ~ .app > img.fullimg {
+    /* width: 60%; */
+    margin: 0 auto;
+    height: auto;
+  }
+}
+
+@media (min-width: 900px) {
+  input ~ .app > img.fullimg {
+    /* width: 60%; */
+    margin: 0 auto;
+    height: auto;
+  }
+}
+
+.fullimg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0.5em 0;
+}
+img[src^="../_images/hidden-"] {
+  display: none;
+}
+.unhidden img[src^="../_images/hidden-"] {
+  display: inherit;
+}
+img[src^="../_images/window-"] {
+  display: none;
+}
+img[src^="../_images/window-"].fullimg {
+  display: inherit;
+}
+
+.icon-dropshadow {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+}
+
+.linkdiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.linkdiv li {
+  display: block;
+  list-style-type: none;
+  margin: 0;
+}
+
+.linkdiv li a {
+  display: block;
+  text-decoration: none;
+  border-radius: var(--rounded-corner);
+  margin: 0;
+  padding: 1rem;
+}
+
+.linkdiv li a:hover {
+  background-color: var(--tocbg);
+}
+
+.linkdiv .title {
+  color: var(--link);
+  display: block;
+  font-weight: 800;
+}
+
+.linkdiv .description {
+  color: var(--fgcolor);
+  display: block;
+}
+
+footer {
+  margin-bottom: 3rem;
+}
+
+.sidebar-drawer {
+  visibility: hidden;
+}
